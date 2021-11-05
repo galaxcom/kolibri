@@ -5,7 +5,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { OpcionesColorPiel, OpcionesEnfermedadPiel, OpcionesGrosorPiel } from '../datos-paciente-opciones';
+import { PacienteService } from '../paciente.service';
 
 @Component({
   selector: 'app-piel-form',
@@ -24,10 +24,10 @@ export class PielFormComponent implements OnInit {
   @ViewChild('enfermedadInput') enfermedadInput!: ElementRef<HTMLInputElement>;
   selectedEnfermedadesPiel: string[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
-    this.opcionesColorPiel = OpcionesColorPiel;
-    this.opcionesGrosorPiel = OpcionesGrosorPiel;
-    this.opcionesEnfermedadPiel = OpcionesEnfermedadPiel;
+  constructor(private formBuilder: FormBuilder, private pacienteService: PacienteService) {
+    this.opcionesColorPiel = this.pacienteService.getOpcionesColorPiel();
+    this.opcionesGrosorPiel = this.pacienteService.getOpcionesGrosorPiel();
+    this.opcionesEnfermedadPiel = this.pacienteService.getOpcionesEnfermedadesPiel();
   }
 
   ngOnInit(): void {

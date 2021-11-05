@@ -22,10 +22,6 @@ export class NuevoPacienteComponent implements OnInit {
   @ViewChild('datosPersonales') private datosPersonales!: DatosPersonalesFormComponent;
   @ViewChild('piel') private piel!: PielFormComponent;
 
-  signosSintomas = [{name: '', selected: false}];
-  selectedSignosSintomas: string[] = [];
-  diagnostico = [{name: '', selected: false}]
-
 
   constructor(private formBuilder: FormBuilder, breakpointObserver: BreakpointObserver, private pacienteService: PacienteService) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
@@ -33,18 +29,10 @@ export class NuevoPacienteComponent implements OnInit {
 
     this.showBottomBar = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? true : false));
-
-    this.signosSintomas = pacienteService.getSignosSintomas().map(s => { return {name: s, selected: false}});
-    this.diagnostico = pacienteService.getDiagnosticos().map(d => {return {name: d, selected: false}})
-  
   }
 
   ngOnInit(): void {
   
-  }
-
-  updateSelectedSignosSintomas(){
-    this.selectedSignosSintomas = this.signosSintomas.filter(s => s.selected).map(s => s.name);
   }
 
   goBack(){

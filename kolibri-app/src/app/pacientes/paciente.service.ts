@@ -1,32 +1,33 @@
 import { Injectable } from '@angular/core';
 import { DatosPersonales, Piel } from '../models/paciente.model';
 
-const SignosSintomas = [
-  "Alteraciones cuello",
-  "Belfos",
-  "Código de barras",
-  "Deficiencia malar",
-  "Deficiencia mentón",
-  "Deformidad nasal",
-  "Depresión temporal",
-  "Inconformidad palpebral",
-  "Inconformidad Periocular",
-  "Inconformidad Perioral",
-  "Lineas de Marioneta",
-  "Lineas Frontales",
-  "Lineas Glabelares",
-  "Perdida de la linea mandibular",
-  "Surcos nasogenianos"
+const MotivacionPaciente = [
+  "Recomendación",
+  "Redes Sociales",
+  "Desición Personal",
+  "Artículos y revistas"
 ]
 
-const Diagnosticos = [
-  "Cansancio (Ojeras)",
-  "Caquexia (Esquelético)",
-  "Enojo (Entrecejo)",
-  "Flacidez (Cachetes caídos y cachete de perrito)",
-  "Maldad (Crueldad)",
-  "Rudeza (Corte en la frente)",
-  "Tristeza (Cejas caídas y las comisuras de la boca caídas)"
+const ColorPiel = [
+  "Muy blanco",
+  "Blanco",
+  "Moreno claro",
+  "Moreno medio",
+  "Moreno oscuro",
+  "Negro"
+]
+
+const GrosorPiel = [
+  "Delgado",
+  "Medio",
+  "Grueso"
+]
+
+const EnfermedadPiel = [
+  "Acné",
+  "Cicatrices",
+  "Rosacea",
+  "Vitiligo"
 ]
 
 @Injectable({
@@ -44,15 +45,20 @@ export class PacienteService {
     console.log(caracterizacionPiel);
   }
 
-  saveSignosSintomas(signosSintomas: string[]){}
-
-  saveDiagnostico(diagnostico: string[]){}
-
-  getSignosSintomas(): string[]{
-    return SignosSintomas;
+  getMotivaciones(){
+    return MotivacionPaciente;
   }
 
-  getDiagnosticos(): string[]{
-    return Diagnosticos;
+  getOpcionesColorPiel(){
+    return ColorPiel;
   }
+
+  getOpcionesGrosorPiel(){
+    return GrosorPiel;
+  }
+
+  getOpcionesEnfermedadesPiel(){
+    return EnfermedadPiel;
+  }
+
 }

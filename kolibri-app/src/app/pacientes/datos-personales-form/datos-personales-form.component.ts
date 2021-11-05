@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { OpcionesMotivacionPaciente } from '../datos-paciente-opciones';
+import { PacienteService } from '../paciente.service';
 
 @Component({
   selector: 'app-datos-personales-form',
@@ -14,8 +14,8 @@ export class DatosPersonalesFormComponent implements OnInit {
   opcionesMotivacion: string[];
   filteredOpcionesMotivacion!: Observable<string[]>;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.opcionesMotivacion = OpcionesMotivacionPaciente;
+  constructor(private formBuilder: FormBuilder, private pacienteService: PacienteService) {
+    this.opcionesMotivacion = this.pacienteService.getMotivaciones();
   }
 
   ngOnInit(): void {
