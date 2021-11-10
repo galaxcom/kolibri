@@ -10,7 +10,7 @@ import { PacienteService } from '../paciente.service';
   styleUrls: ['./datos-personales-form.component.scss']
 })
 export class DatosPersonalesFormComponent implements OnInit {
-  datosPersonales!: FormGroup;
+  formGroup!: FormGroup;
   opcionesMotivacion: string[];
   filteredOpcionesMotivacion!: Observable<string[]>;
 
@@ -22,7 +22,7 @@ export class DatosPersonalesFormComponent implements OnInit {
     this.buildDatosPersonalesGroup();
 
     
-    this.filteredOpcionesMotivacion = this.datosPersonales.get('motivacion')!.valueChanges
+    this.filteredOpcionesMotivacion = this.formGroup.get('motivacion')!.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filterMotivacion(value))
@@ -30,7 +30,7 @@ export class DatosPersonalesFormComponent implements OnInit {
   }
 
   buildDatosPersonalesGroup(){
-    this.datosPersonales = this.formBuilder.group({
+    this.formGroup = this.formBuilder.group({
       nombre: [''],
       email: ['', Validators.email],
       fechaNacimiento: [''],

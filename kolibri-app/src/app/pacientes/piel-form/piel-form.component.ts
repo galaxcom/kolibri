@@ -20,7 +20,7 @@ export class PielFormComponent implements OnInit {
   opcionesEnfermedadPiel: string[];
   filteredOpcionesEnfermedad!: Observable<string[]>;
 
-  piel!: FormGroup;
+  formGroup!: FormGroup;
   @ViewChild('enfermedadInput') enfermedadInput!: ElementRef<HTMLInputElement>;
   selectedEnfermedadesPiel: string[] = [];
 
@@ -33,13 +33,13 @@ export class PielFormComponent implements OnInit {
   ngOnInit(): void {
     this.buildPielGroup();
 
-    this.filteredOpcionesEnfermedad = this.piel.get('enfermedades')!.valueChanges.pipe(
+    this.filteredOpcionesEnfermedad = this.formGroup.get('enfermedades')!.valueChanges.pipe(
       startWith(null),
       map((enfermedad: string | null) => enfermedad ? this._filterEnfermedad(enfermedad) : this.opcionesEnfermedadPiel.slice()));
   }
 
   buildPielGroup() {
-    this.piel = this.formBuilder.group({
+    this.formGroup = this.formBuilder.group({
       color: ['', Validators.required],
       grosor: ['', Validators.required],
       enfermedades: []
@@ -59,7 +59,7 @@ export class PielFormComponent implements OnInit {
     // Clear the input value
     event.chipInput!.clear();
 
-    this.piel.get('enfermedades')?.setValue(null);
+    this.formGroup.get('enfermedades')?.setValue(null);
   }
 
   remove(enfermedad: string): void {
@@ -74,7 +74,7 @@ export class PielFormComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     this.selectedEnfermedadesPiel.push(event.option.viewValue);
     this.enfermedadInput.nativeElement.value = '';
-    this.piel.get('enfermedades')?.setValue(null);
+    this.formGroup.get('enfermedades')?.setValue(null);
   }
 
   private _filterEnfermedad(value: string): string[] {

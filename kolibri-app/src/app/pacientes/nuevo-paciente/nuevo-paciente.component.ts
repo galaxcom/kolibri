@@ -35,6 +35,14 @@ export class NuevoPacienteComponent implements OnInit {
   
   }
 
+  get datosPersonalesFrmGroup(){
+    return this.datosPersonales ? this.datosPersonales.formGroup : null;
+  }
+
+  get pielFrmGroup(){
+    return this.piel ? this.piel.formGroup : null;
+  }
+
   goBack(){
     this.stepper.previous();
   }
@@ -42,10 +50,10 @@ export class NuevoPacienteComponent implements OnInit {
   goForward(finishedStep: number){
     switch(finishedStep){
       case 1:
-        this.pacienteService.saveDatosPersonales(this.datosPersonales.datosPersonales.value);
+        this.pacienteService.saveDatosPersonales(this.datosPersonalesFrmGroup!.value);
         break;
       case 2:
-        this.pacienteService.saveCaracterizacionPiel({color: this.piel.piel.value.color, grosor: this.piel.piel.value.grosor, enfermedades: this.piel.selectedEnfermedadesPiel});
+        this.pacienteService.saveCaracterizacionPiel({color: this.pielFrmGroup!.value.color, grosor: this.pielFrmGroup!.value.grosor, enfermedades: this.piel.selectedEnfermedadesPiel});
     }
     this.stepper.next();
   }

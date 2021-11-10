@@ -1,5 +1,5 @@
 <mat-stepper #stepper linear="true" [orientation]="(stepperOrientation | async)!">
-    <mat-step label="Datos personales">
+    <mat-step label="Datos personales" [stepControl]="datosPersonalesFrmGroup!">
         <app-datos-personales-form #datosPersonales></app-datos-personales-form>
         <div *ngIf="showBottomBar | async; else noBottomBar"  fxLayout.gt-sm="row" fxLayoutAlign="space-around end">
             <div fxFlex="50%" >
