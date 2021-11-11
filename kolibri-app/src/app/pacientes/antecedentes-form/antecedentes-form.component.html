@@ -1,0 +1,53 @@
+<form>
+    <div fxLayout="row">
+        <!--Tratamientos Cosméticos Previos-->
+        <div fxFlex="50%">
+            <h1>Tratamientos Cosméticos Previos</h1>
+            <div fxLayout="row">
+                <div fxFlex="50%">
+                    <mat-checkbox #checkRellenos (change)="onCheckRellenosChange($event)">
+                        Rellenos
+                    </mat-checkbox>
+
+                    <div *ngIf="checkRellenos.checked" style="margin-top: 16px;">
+                        <div *ngFor="let relleno of rellenos" fxLayout="row" fxLayoutAlign="space-around start" style="margin-bottom: 16px;">
+                            <app-tratamiento-cosmetico-control fxFlex="70%" funcion="relleno" [displayMode]="relleno.display"></app-tratamiento-cosmetico-control>
+                            <div fxFlex="30%"></div>
+                        </div>
+
+                        <button mat-flat-button style="margin-top: 8px;" (click)="onNewRellenoClicked()">Especificar otro tratamiento</button>
+                    </div>
+                    
+                </div>
+                <div fxFlex="50%">
+                    <mat-checkbox #checkToxina (change)="onCheckToxinaChange($event)">
+                        Toxina
+                    </mat-checkbox>
+
+                    <div *ngIf="checkToxina.checked" style="margin-top: 16px;">
+                        <div *ngFor="let toxina of toxinas" fxLayout="row" fxLayoutAlign="space-around start" style="margin-bottom: 16px;">
+                            <app-tratamiento-cosmetico-control fxFlex="70%" funcion="toxina" [displayMode]="toxina.display"></app-tratamiento-cosmetico-control>
+                            <div fxFlex="30%"></div>
+                        </div>
+
+                        
+
+                        <button mat-flat-button style="margin-top: 8px;" (click)="onNewToxinaClicked()">Especificar otro tratamiento</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Tratamientos Faciales Alternos-->
+        <div fxFlex="25%">
+            <h1>Tratamientos Faciales Alternos</h1>
+        </div>
+
+        <!--Antecedentes Patológicos-->
+        <div fxFlex="25%">
+            <h1>Antecedentes Patológicos</h1>
+        </div>
+    </div>
+    
+</form>

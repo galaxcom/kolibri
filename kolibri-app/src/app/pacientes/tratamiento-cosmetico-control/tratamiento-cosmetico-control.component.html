@@ -1,0 +1,51 @@
+<mat-card *ngIf="this.displayMode else editMode">
+    <p>{{this.producto}}</p>
+    <p>{{this.fecha}}</p>
+    <div>
+        <button id="descartar" mat-flat-button>
+            <mat-icon>highlight_off</mat-icon>
+            Descartar tratamiento
+        </button>
+    </div>
+    <div>
+        <button id="editar" mat-flat-button (click)="onEditClick()">
+            <mat-icon>edit</mat-icon>
+            Editar tratamiento
+        </button>
+    </div>
+</mat-card>
+
+<ng-template #editMode>
+    <mat-card >
+    
+        <form [formGroup]="formGroup">
+                <div fxLayout="column" fxLayoutAlign="end" style="margin-top: 16px;">
+                    
+                    <div fxFlex>
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOpcionesProductos | async" [value]="option">
+                              {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{this.funcion === 'relleno' ? "Relleno" : "Toxina"}}</mat-label>
+                            <input type="text"
+                            placeholder="Pick one"
+                            matInput
+                            formControlName="producto"
+                            [matAutocomplete]="auto">
+                        </mat-form-field>
+                    </div>
+                
+                    <div fxFlex>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha</mat-label>
+                            <input formControlName="fecha" matInput type="date">
+                        </mat-form-field>
+                    </div>
+                </div>
+                
+            </form>
+    </mat-card>
+        
+</ng-template>

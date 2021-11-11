@@ -16,9 +16,15 @@ export interface Piel {
     enfermedades: string[]
 }
 
+export interface TratamientoCosmetico {
+    producto: string,
+    fecha: string
+}
+
 export interface Paciente {
     datosPersonales: DatosPersonales,
     piel: Piel,
     signosSintomas: string[]
-    diagnostico: string[]
+    diagnostico: string[],
+    tratamientosCosmeticos?: TratamientoCosmetico[] 
 }
