@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DatosPersonales, Piel } from '../models/paciente.model';
+import { DatosPersonales, Paciente, Piel } from '../models/paciente.model';
 
 const MotivacionPaciente = [
   "Recomendación",
@@ -36,6 +36,11 @@ const EnfermedadPiel = [
 export class PacienteService {
 
   constructor() { }
+
+  savePaciente(paciente: Paciente){
+    // aquí se deberían guardar todos los datos del paciente en la base de datos
+    console.log(paciente);
+  }
 
   saveDatosPersonales(datosPersonales: DatosPersonales){
     console.log(datosPersonales);

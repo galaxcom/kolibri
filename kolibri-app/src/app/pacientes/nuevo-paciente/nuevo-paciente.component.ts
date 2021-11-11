@@ -54,7 +54,20 @@ export class NuevoPacienteComponent implements OnInit {
         break;
       case 2:
         this.pacienteService.saveCaracterizacionPiel({color: this.pielFrmGroup!.value.color, grosor: this.pielFrmGroup!.value.grosor, enfermedades: this.piel.selectedEnfermedadesPiel});
+        break;
+      case 3:
+        this.pacienteService.savePaciente({
+          datosPersonales: this.datosPersonalesFrmGroup?.value,
+          piel: {color: this.pielFrmGroup!.value.color, grosor: this.pielFrmGroup!.value.grosor, enfermedades: this.piel.selectedEnfermedadesPiel},
+        })
     }
     this.stepper.next();
+  }
+
+  guardarDatos(){
+    this.pacienteService.savePaciente({
+      datosPersonales: this.datosPersonalesFrmGroup?.value,
+      piel: {color: this.pielFrmGroup!.value.color, grosor: this.pielFrmGroup!.value.grosor, enfermedades: this.piel.selectedEnfermedadesPiel},
+    })
   }
 }

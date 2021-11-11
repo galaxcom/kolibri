@@ -24,7 +24,5 @@ export interface TratamientoCosmetico {
 export interface Paciente {
     datosPersonales: DatosPersonales,
     piel: Piel,
-    signosSintomas: string[]
-    diagnostico: string[],
     tratamientosCosmeticos?: TratamientoCosmetico[] 
 }
